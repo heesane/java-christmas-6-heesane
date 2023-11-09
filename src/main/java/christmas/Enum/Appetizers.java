@@ -5,9 +5,9 @@ public enum Appetizers {
     TAPAS("타파스","5,500",5500),
     CAESAR_SALAD("시저샐러드","8,000",8000);
 
-    private String menuName;
-    private String stringPrice;
-    private Integer intPrice;
+    private final String menuName;
+    private final String stringPrice;
+    private final Integer intPrice;
 
     Appetizers(String menuName, String stringPrice, Integer intPrice){
         this.menuName = menuName;

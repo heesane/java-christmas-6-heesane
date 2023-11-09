@@ -5,9 +5,9 @@ public enum Drinks {
     Red_Wine("레드와인", "60,000", 60000),
     Champagne("샴페인", "25,000", 25000);
 
-    private String name;
-    private String stringPrice;
-    private Integer price;
+    private final String name;
+    private final String stringPrice;
+    private final Integer price;
     Drinks(String name, String stringPrice, Integer price) {
         this.name = name;
         this.stringPrice = stringPrice;

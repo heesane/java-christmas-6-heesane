@@ -6,12 +6,12 @@ public enum MainDishes {
     Seafood_Pasta("해산물파스타", "35,000", 35000),
     Christmas_Pasta("크리스마스파스타", "25,000", 25000);
     private final String name;
-    private final String priceString;
-    private final int price;
+    private final String stringPrice;
+    private final Integer price;
 
-    MainDishes(String name, String priceString, int price) {
+    MainDishes(String name, String stringPrice, Integer price) {
         this.name = name;
-        this.priceString = priceString;
+        this.stringPrice = stringPrice;
         this.price = price;
     }
 
@@ -19,8 +19,8 @@ public enum MainDishes {
         return name;
     }
 
-    public String getPriceString() {
-        return priceString;
+    public String getStringPrice() {
+        return stringPrice;
     }
 
     public int getPrice() {

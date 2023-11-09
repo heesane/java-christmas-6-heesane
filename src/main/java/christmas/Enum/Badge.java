@@ -5,8 +5,8 @@ public enum Badge {
     BADGE_TREE("트리",10000),
     BADGE_SANTA("산타",20000);
 
-    private String badgeName;
-    private Integer badgePrice;
+    private final String badgeName;
+    private final Integer badgePrice;
 
     Badge(String badgeName, Integer badgePrice){
         this.badgeName = badgeName;
