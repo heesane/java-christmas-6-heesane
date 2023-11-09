@@ -6,16 +6,16 @@ public enum Badge {
     BADGE_SANTA("산타",20000);
 
     private String badgeName;
-    private int badgePrice;
+    private Integer badgePrice;
 
-    Badge(String badgeName, int badgePrice){
+    Badge(String badgeName, Integer badgePrice){
         this.badgeName = badgeName;
         this.badgePrice = badgePrice;
     }
     public String getBadgeName() {
         return badgeName;
     }
-    public int getBadgePrice() {
+    public Integer getBadgePrice() {
         return badgePrice;
     }
 }
