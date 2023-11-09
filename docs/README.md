@@ -13,7 +13,17 @@
 6. `OrderInfo` Class -> 주문 관련 정보를 담기 위한 Class -> `OrderList`, `Price`
 
 7. `Event` Class -> 이벤트 별 할인 정보를 담기 위한 Class -> `ChristMasDday`, `WeekDay`, `WeekendDay`, `FreeGift`
-8. `Reservation` Class -> 사용자의 예약 날짜를 저장하기 위한 Class -> `Integer` 
+8. `Reservation` Class -> 사용자의 예약 날짜를 저장하기 위한 Class -> `Integer`
+
+## Enum
+
+1. `WEEK` -> MONDAY(1),TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY(7)
+2. `Appetizer` -> 알송이수프(6,000),타파스(5,500),시저샐러드(8,000)
+3. `MainDishes` -> 티본스테이크(55,000), 바비큐립(54,000), 해산물파스타(35,000),크리스마스파스타(25,000)
+4. `Dessert` -> 초코케이크(15,000), 아이스크림(5,000)
+5. `Drink` -> 제로콜라(3,000), 레드와인(60,000),샴페인(25,000)
+6. 
+
 
 ## Parser
 사용자의 입력을 처리하기 위한 Class
