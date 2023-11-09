@@ -14,4 +14,16 @@ public enum Appetizers {
         this.stringPrice = stringPrice;
         this.intPrice = intPrice;
     }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public String getStringPrice() {
+        return stringPrice;
+    }
+
+    public Integer getIntPrice() {
+        return intPrice;
+    }
 }
