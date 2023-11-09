@@ -12,7 +12,8 @@
 
 6. `OrderInfo` Class -> 주문 관련 정보를 담기 위한 Class -> `OrderList`, `Price`
 
-7. `Event` Class -> 이벤트 별 할인 정보를 담기 위한 Class -> `ChristMasDday`, `WeekDay`, `WeekendDay`, `FreeGift`
+7. `Event` Class -> 이벤트 별 할인 정보를 담기 위한 Class -> `Reveration` -> `ChristMasDday`, `WeekDay`, `WeekendDay`파악 
+-> `set` 메서드로 나중에 증정품으로 인한 혜택 금액 추가
 8. `Reservation` Class -> 사용자의 예약 날짜를 저장하기 위한 Class -> `Integer`
 
 ## Enum
@@ -22,14 +23,13 @@
 3. `MainDishes` -> 티본스테이크(55,000), 바비큐립(54,000), 해산물파스타(35,000),크리스마스파스타(25,000)
 4. `Dessert` -> 초코케이크(15,000), 아이스크림(5,000)
 5. `Drink` -> 제로콜라(3,000), 레드와인(60,000),샴페인(25,000)
-6. 
-
+6. `Badge` -> 별(5000), 트리(10000), 산타(20000)
 
 ## Parser
 사용자의 입력을 처리하기 위한 Class
 
-1. `ParserOrderList` -> 사용자가 입력한 주문 리스트들 `OrderList`를 만들기 위한 Parser -> `ValidatorOfOrderList` 필요 -> 메누가 존재하는지, 형식이 잘못되어 있는지 파악 -> `Exception` 필요 -> `Constannt` EnumClass
-2. `ParserReservation ` -> 사용자가 입력한 날짜를 `Reservation`의 객체로 생성하기 위한 Parser -> `ValdatorOfDate`필요 -> 숫자인지, 범위 밖에 있는지,
+1. `ParserOrderList` -> 사용자가 입력한 주문 리스트들 `OrderList`를 만들기 위한 Parser -> `ValidatorOfOrderList` 필요 -> 메누가 존재하는지, 형식이 잘못되어 있는지 파악 -> `Exception` 필요 -> `OrderListException`
+2. `ParserReservation ` -> 사용자가 입력한 날짜를 `Reservation`의 객체로 생성하기 위한 Parser -> `ValdatorOfDate`필요 -> 숫자인지, 범위 밖에 있는지 파악 -> `Exception` 필요 -> `ReservationException`
 
 ## Controller
 
