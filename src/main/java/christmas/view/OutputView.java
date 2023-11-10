@@ -3,10 +3,10 @@ package christmas.view;
 import christmas.view.constant.ViewMessages;
 
 public class OutputView {
-    private void printConstantMessage(String message){
+    private static void printConstantMessage(String message){
         System.out.println(message);
     }
-    private void printWhiteSpace(){
+    private static void printWhiteSpace(){
         System.out.println();
     }
     public void printWelcome(){
