@@ -32,4 +32,12 @@ public class Menu {
     public boolean isDrink(String menu){
         return drinks.contains(menu);
     }
+    public List<String> allMenus(){
+        List<String> allMenus = new ArrayList<>();
+        allMenus.addAll(appetizers);
+        allMenus.addAll(desserts);
+        allMenus.addAll(mainDishes);
+        allMenus.addAll(drinks);
+        return allMenus;
+    }
 }
