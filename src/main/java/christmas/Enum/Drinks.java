@@ -1,5 +1,8 @@
 package christmas.Enum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Drinks {
     Zero_Cola("제로콜라", "3,000", 3000),
     Red_Wine("레드와인", "60,000", 60000),
@@ -24,5 +27,12 @@ public enum Drinks {
 
     public String getName() {
         return name;
+    }
+    public static List<String> getDrinks(){
+        List<String> drinks = new ArrayList<>();
+        for(Drinks drink : Drinks.values()){
+            drinks.add(drink.getName());
+        }
+        return drinks;
     }
 }

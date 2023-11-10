@@ -1,5 +1,8 @@
 package christmas.Enum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum MainDishes {
     T_Bone_Steak("티본스테이크", "55,000", 55000),
     BBQ_Ribs("바비큐립", "54,000", 54000),
@@ -25,5 +28,12 @@ public enum MainDishes {
 
     public int getPrice() {
         return price;
+    }
+    public static List<String> getMainDishes(){
+        List<String> mainDishes = new ArrayList<>();
+        for(MainDishes mainDish : MainDishes.values()){
+            mainDishes.add(mainDish.getName());
+        }
+        return mainDishes;
     }
 }

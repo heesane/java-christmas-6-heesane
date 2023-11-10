@@ -1,5 +1,8 @@
 package christmas.Enum;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public enum Appetizers {
     AL_SONG_SOUP("알송이수프","6,000",6000),
     TAPAS("타파스","5,500",5500),
@@ -25,5 +28,12 @@ public enum Appetizers {
 
     public Integer getIntPrice() {
         return intPrice;
+    }
+    public static List<String> getAppetizers(){
+        List<String> appetizers = new ArrayList<>();
+        for(Appetizers appetizer : Appetizers.values()){
+            appetizers.add(appetizer.getMenuName());
+        }
+        return appetizers;
     }
 }
