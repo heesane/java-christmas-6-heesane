@@ -36,4 +36,12 @@ public enum MainDishes {
         }
         return mainDishes;
     }
+    public static Integer getPriceByMenuName(String menuName){
+        for(MainDishes mainDish : MainDishes.values()){
+            if(mainDish.getName().equals(menuName)){
+                return mainDish.getPrice();
+            }
+        }
+        return 0;
+    }
 }

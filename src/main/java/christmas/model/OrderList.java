@@ -13,4 +13,7 @@ public class OrderList {
     public Integer getListLength(){
         return orderList.size();
     }
+    public List<Order> getOrderList(){
+        return orderList;
+    }
 }

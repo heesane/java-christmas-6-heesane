@@ -1,5 +1,6 @@
 package christmas.Enum;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,11 +30,16 @@ public enum Appetizers {
     public Integer getIntPrice() {
         return intPrice;
     }
-    public static List<String> getAppetizers(){
-        List<String> appetizers = new ArrayList<>();
+    public static List<HashMap<String,Integer>> getAppetizers(){
+        List<HashMap<String,Integer>> appetizers = new ArrayList<>();
         for(Appetizers appetizer : Appetizers.values()){
-            appetizers.add(appetizer.getMenuName());
+            appetizers.add(makeAppetizerHashMap(appetizer));
         }
         return appetizers;
+    }
+    private static HashMap<String,Integer> makeAppetizerHashMap(Appetizers appetizer){
+        HashMap<String,Integer> appetizerHashMap = new HashMap<>();
+        appetizerHashMap.put(appetizer.getMenuName(),appetizer.getIntPrice());
+        return appetizerHashMap;
     }
 }

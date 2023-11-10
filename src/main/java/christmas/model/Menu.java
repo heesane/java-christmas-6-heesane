@@ -8,10 +8,10 @@ import christmas.Enum.MainDishes;
 import java.util.*;
 
 public class Menu {
-    private final List<String> appetizers;
-    private final List<String> desserts;
-    private final List<String> mainDishes;
-    private final List<String> drinks;
+    private final List<HashMap<String,Integer>> appetizers;
+    private final List<HashMap<String,Integer>> desserts;
+    private final List<HashMap<String,Integer>> mainDishes;
+    private final List<HashMap<String,Integer>> drinks;
 
     public Menu(){
         appetizers = Appetizers.getAppetizers();
