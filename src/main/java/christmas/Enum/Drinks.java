@@ -1,8 +1,9 @@
 package christmas.Enum;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Drinks {
     Zero_Cola("제로콜라", "3,000", 3000),
@@ -18,7 +19,7 @@ public enum Drinks {
         this.price = price;
     }
 
-    public Integer getPrice() {
+    public Integer getIntPrice() {
         return price;
     }
 
@@ -26,27 +27,17 @@ public enum Drinks {
         return stringPrice;
     }
 
-    public String getName() {
+    public String getMenuName() {
         return name;
     }
     public static List<HashMap<String,Integer>> getDrinks(){
-        List<HashMap<String,Integer>> appetizers = new ArrayList<>();
-        for(Drinks drinks : Drinks.values()){
-            appetizers.add(makeDrinksHashMap(drinks));
-        }
-        return appetizers;
+        return Arrays.stream(Drinks.values()).
+                map(Drinks::makeDrinksHashMap).
+                toList();
     }
-    private static HashMap<String,Integer> makeDrinksHashMap(Drinks drinks){
+    private static HashMap<String,Integer> makeDrinksHashMap(Drinks drink){
         HashMap<String,Integer> drinksHashMap = new HashMap<>();
-        drinksHashMap.put(drinks.getMenuName(),drinks.getIntPrice());
+        drinksHashMap.put(drink.getMenuName(),drink.getIntPrice());
         return drinksHashMap;
-    }
-    public static Integer getPriceByMenuName(String menuName){
-        for(Drinks drink : Drinks.values()){
-            if(drink.getName().equals(menuName)){
-                return drink.getPrice();
-            }
-        }
-        return 0;
     }
 }

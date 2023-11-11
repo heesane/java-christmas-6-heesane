@@ -1,8 +1,9 @@
 package christmas.Enum;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Desserts {
     Choco_Cake("초코케이크", "15,000", 15000),
@@ -17,7 +18,7 @@ public enum Desserts {
         this.price = price;
     }
 
-    public String getName() {
+    public String getMenuName() {
         return name;
     }
 
@@ -25,20 +26,18 @@ public enum Desserts {
         return stringPrice;
     }
 
-    public Integer getPrice() {
+    public Integer getIntPrice() {
         return price;
     }
 
     public static List<HashMap<String,Integer>> getDesserts(){
-        List<HashMap<String,Integer>> desserts = new ArrayList<>();
-        for(Desserts dessert : Desserts.values()){
-            desserts.add(makeDessertsHashMap(dessert));
-        }
-        return desserts;
+        return Arrays.stream(Desserts.values()).
+                map(Desserts::makeDessertsHashMap).
+                toList();
     }
     private static HashMap<String,Integer> makeDessertsHashMap(Desserts dessert){
         HashMap<String,Integer> dessertHashMap = new HashMap<>();
-        dessertHashMap.put(dessert.getName(),dessert.getPrice());
+        dessertHashMap.put(dessert.getMenuName(),dessert.getIntPrice());
         return dessertHashMap;
     }
 }

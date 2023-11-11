@@ -1,8 +1,10 @@
 package christmas.Enum;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public enum Appetizers {
     AL_SONG_SOUP("알송이수프","6,000",6000),
@@ -31,11 +33,10 @@ public enum Appetizers {
         return intPrice;
     }
     public static List<HashMap<String,Integer>> getAppetizers(){
-        List<HashMap<String,Integer>> appetizers = new ArrayList<>();
-        for(Appetizers appetizer : Appetizers.values()){
-            appetizers.add(makeAppetizerHashMap(appetizer));
-        }
-        return appetizers;
+        return Arrays.stream(Appetizers.values()).
+                map(Appetizers::makeAppetizerHashMap).
+                toList();
+
     }
     private static HashMap<String,Integer> makeAppetizerHashMap(Appetizers appetizer){
         HashMap<String,Integer> appetizerHashMap = new HashMap<>();
