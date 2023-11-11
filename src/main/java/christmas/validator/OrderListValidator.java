@@ -14,7 +14,8 @@ public class OrderListValidator {
 
     }
     public void isValidOrderList(String orderList){
-        if(!orderList.matches("^(\\w+-(?:[1-9]|1\\d|20),)*\\w+-(?:[1-9]|1\\d|20)(,\\w+-(?:[1-9]|1\\d|20))*$\n")){
+        if(!orderList.trim().matches("(([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)(,([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)*")){
+            System.out.println("isValidOrderList");
             throw new InvalidOrderFormatException();
         }
     }
@@ -36,7 +37,7 @@ public class OrderListValidator {
         String[] orderListSplit = orderList.split(COMMA);
         for (String s : orderListSplit) {
             String[] menu = s.split(DASH);
-            if(!allMenu.allMenus().contains(menu[MENU_INDEX])){
+            if(!allMenu.isMenu(menu[MENU_INDEX])){
                 throw new InvalidOrderFormatException();
             }
         }
