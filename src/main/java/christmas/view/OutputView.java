@@ -50,4 +50,8 @@ public class OutputView {
         printWhiteSpace();
         printConstantMessage(ViewMessages.BADGE_MESSAGE.getMessage());
     }
+    public void printExceptionMessage(Exception e){
+        printWhiteSpace();
+        printConstantMessage(e.getMessage());
+    }
 }
