@@ -2,6 +2,9 @@ package christmas.model;
 
 import java.util.HashMap;
 
+import static christmas.view.constant.ViewMessages.AMOUNT;
+import static christmas.view.constant.ViewMessages.WHITESPACE;
+
 public class Order {
     private final HashMap<String,Integer> order;
     public Order(HashMap<String,Integer> order){
@@ -15,6 +18,9 @@ public class Order {
     }
     @Override
     public String toString(){
-        return getMenuName()+" "+getQuantity()+"개";
+        return getMenuName()+
+                WHITESPACE.getMessage()+
+                getQuantity()+
+                AMOUNT.getMessage();
     }
 }
