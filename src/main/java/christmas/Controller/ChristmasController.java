@@ -1,8 +1,7 @@
 package christmas.Controller;
 
-import christmas.model.OrderInfo;
-import christmas.model.Reservation;
-import christmas.parser.ParserOrderInfo;
+import christmas.model.*;
+import christmas.parser.ParserOrderList;
 import christmas.parser.ParserReservation;
 import christmas.service.ChristmasService;
 import christmas.view.InputView;
@@ -13,33 +12,31 @@ public class ChristmasController {
     private final OutputView output;
     private final ChristmasService service;
     private final ParserReservation parserReservation;
-    private final ParserOrderInfo parserOrderInfo;
+    private final ParserOrderList parserOrderList;
     public ChristmasController(){
         input = new InputView();
         output = new OutputView();
-        parserReservation = new ParserReservation(input);
-        parserOrderInfo = new ParserOrderInfo();
-        service = new ChristmasService(parserReservation, parserOrderInfo);
+        parserReservation = new ParserReservation(input,output);
+        parserOrderList = new ParserOrderList(input,output);
+        service = new ChristmasService(parserReservation, parserOrderList);
     }
     public void execute(){
-        PrintHelloMessages();
-        String reservationDay = PrintRequestReservationDate();
-        Reservation date = service.makeReservation(reservationDay);
-        System.out.println(date.reservationDay());
-        String order = PrintRequestOrder();
-        OrderInfo orderInfo = service.makeOrderInfo(order);
-
-
-    }
-    private void PrintHelloMessages(){
         output.printWelcome();
-    }
-    private String PrintRequestReservationDate(){
         output.printRequestReservationDate();
-        return input.inputReservationDay();
-    }
-    private String PrintRequestOrder(){
+        String reservationDay = input.inputReservationDay();
+        Reservation date = service.makeReservation(reservationDay);
         output.printRequestMenuAndAmount();
-        return input.inputMenuAndAmount();
+        String order = input.inputMenuAndAmount();
+        OrderList orderList = service.makeOrderList(order);
+        Event event = service.makeEvent(date);
+        Price price = service.makePrice(orderList, event);
+        OrderInfo orderInfo = service.makeOrderInfo(orderList,price);
+        output.printOrderList(date,orderInfo);
+        output.printTotalPrice(price);
+        output.printFreeGiftList(price);
+        output.printEventMessage(orderInfo);
+        output.printDiscount(price);
+        output.printTotalPriceAfterDiscount(price);
+        output.printBadgeMessage(price);
     }
 }
