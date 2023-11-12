@@ -19,10 +19,10 @@ public class ParserOrderList {
     private InputView input;
     private OutputView output;
 
-    public ParserOrderList(InputView input, OutputView output){
+    public ParserOrderList(){
         validator = new OrderListValidator();
-        this.input = input;
-        this.output = output;
+        this.input = new InputView();
+        this.output = new OutputView();
     }
     public OrderList parseOrderList(String orderList) {
         try {
@@ -34,11 +34,14 @@ public class ParserOrderList {
             return parseOrderList(input.inputMenuAndAmount());
         }
         String[] orderSplit = orderList.split(COMMA.getMessage());
-        List<Order> orderArrayList = IntStream.
+        List<Order> orderArrayList = getOrderList(orderSplit);
+        return new OrderList(orderArrayList);
+    }
+    private List<Order> getOrderList(String[] orderSplit) {
+        return IntStream.
                 iterate(0, i -> i < orderSplit.length, i -> i + 1).
                 mapToObj(i -> parseOrder(orderSplit[i])).
                 collect(Collectors.toList());
-        return new OrderList(orderArrayList);
     }
     private Order parseOrder(String order){
         String[] orderSplit = order.split(DASH.getMessage());

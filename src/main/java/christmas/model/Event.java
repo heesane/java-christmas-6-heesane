@@ -3,12 +3,15 @@ package christmas.model;
 import christmas.Enum.Week;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class Event {
     private final Integer CHRISTMAS_YEAR = 2023;
     private final Integer CHRISTMAS_MONTH = 12;
     private final Integer CHRISTMAS_EVENT_END = 25;
     private final Integer CHRISTMAS_EVENT_START = 1;
+    private final List<Integer> SPECAIL_EVENT = Arrays.asList(3,10,17,24,25,31);
     private final Reservation date;
     public Event(Reservation date){
         this.date = date;
@@ -29,11 +32,6 @@ public class Event {
         return localDate.getDayOfWeek().getValue() == Week.FRIDAY.getDay() || localDate.getDayOfWeek().getValue() == Week.SATURDAY.getDay();
     }
     public boolean isSpecialEvent() {
-        return (date.reservationDay() == 3 ||
-                date.reservationDay() == 10 ||
-                date.reservationDay() == 17 ||
-                date.reservationDay() == 24 ||
-                date.reservationDay() == 25 ||
-                date.reservationDay() == 31);
+        return SPECAIL_EVENT.contains(date.reservationDay());
     }
 }

@@ -11,28 +11,18 @@ public class ChristmasController {
     private final InputView input;
     private final OutputView output;
     private final ChristmasService service;
-    private final ParserReservation parserReservation;
-    private final ParserOrderList parserOrderList;
     public ChristmasController(){
         input = new InputView();
         output = new OutputView();
-        parserReservation = new ParserReservation(input,output);
-        parserOrderList = new ParserOrderList(input,output);
-        service = new ChristmasService(parserReservation, parserOrderList);
+        service = new ChristmasService();
     }
     public void execute(){
-        output.printWelcome();
-        output.printRequestReservationDate();
-        String reservationDay = input.inputReservationDay();
-        Reservation date = service.makeReservation(reservationDay);
-        output.printRequestMenuAndAmount();
-        String order = input.inputMenuAndAmount();
-        OrderList orderList = service.makeOrderList(order);
+        hello();
+        Reservation date = reservation();
+        OrderList orderList = orderList();
         Event event = service.makeEvent(date);
         Price price = service.makePrice(orderList, event);
         OrderInfo orderInfo = service.makeOrderInfo(orderList,price);
-        System.out.println(orderInfo.price().toString());
-        System.out.println(orderInfo.price().specialBenefits());
         printResultMessages(date,orderInfo,orderInfo.price());
     }
     private void printResultMessages(Reservation date, OrderInfo orderInfo, Price price){
@@ -44,5 +34,17 @@ public class ChristmasController {
         output.printTotalPriceAfterDiscount(price);
         output.printBadgeMessage(price);
     }
-
+    private void hello(){
+        output.printWelcome();
+    }
+    private Reservation reservation(){
+        output.printRequestReservationDate();
+        String reservationDay = input.inputReservationDay();
+        return service.makeReservation(reservationDay);
+    }
+    private OrderList orderList(){
+        output.printRequestMenuAndAmount();
+        String order = input.inputMenuAndAmount();
+        return service.makeOrderList(order);
+    }
 }
