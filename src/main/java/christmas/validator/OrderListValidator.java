@@ -15,7 +15,6 @@ public class OrderListValidator {
     }
     public void isValidOrderList(String orderList){
         if(!orderList.trim().matches("(([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)(,([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)*")){
-            System.out.println("isValidOrderList");
             throw new InvalidOrderFormatException();
         }
     }
