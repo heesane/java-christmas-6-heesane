@@ -18,13 +18,12 @@ public class OrderListValidator {
             throw new InvalidOrderFormatException();
         }
     }
-    // 메뉴가 20개가 넘는지, 0개인지 체크
     public void checkOrderAmount(String orderList) {
-        Integer checkAmount = 0;
+        int checkAmount = 0;
         String[] orderListSplit = orderList.split(COMMA);
         for (String s : orderListSplit) {
             String[] menu = s.split(DASH);
-            Integer amount = Integer.parseInt(menu[AMOUNT_INDEX]);
+            int amount = Integer.parseInt(menu[AMOUNT_INDEX]);
             checkAmount += amount;
         }
         if (checkAmount > MAX_AMOUNT) {

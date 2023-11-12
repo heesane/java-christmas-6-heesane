@@ -19,18 +19,11 @@ public class Menu {
         mainDishes = MainDishes.getMainDishes();
         drinks = Drinks.getDrinks();
     }
-
-    public boolean isAppetizer(String menu){
-        return checkMenu(appetizers,menu);
-    }
     public boolean isDessert(String menu){
         return checkMenu(desserts,menu);
     }
     public boolean isMainDish(String menu){
         return checkMenu(mainDishes,menu);
-    }
-    public boolean isDrink(String menu){
-        return checkMenu(drinks,menu);
     }
     public List<HashMap<String,Integer>> allMenus(){
         List<HashMap<String,Integer>> allMenus = new ArrayList<>();

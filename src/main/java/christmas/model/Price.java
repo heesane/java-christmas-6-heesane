@@ -3,7 +3,9 @@ package christmas.model;
 import java.text.DecimalFormat;
 
 import static christmas.constant.EventConstant.*;
-import static christmas.constant.stringConstant.*;
+import static christmas.constant.stringConstant.EMPTY;
+import static christmas.constant.stringConstant.PRICE_EMPTY;
+
 
 public record Price(Integer totalPrice, Integer christmasBenefits, Integer weekBenefits, Integer weekendBenefits, Integer specialBenefits, Integer freeGiftBenefits) {
     public String getTotalPriceAfterBenefits() {
@@ -91,12 +93,11 @@ public record Price(Integer totalPrice, Integer christmasBenefits, Integer weekB
         }
         return sb.toString();
     }
-
     public String benefitPrice(){
         if(getTotalBenefits() == 0){
             return PRICE_EMPTY.getMessage();
         }
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        return decimalFormat.format(-1 *getTotalBenefits());
+        return decimalFormat.format(-1L *getTotalBenefits());
     }
 }

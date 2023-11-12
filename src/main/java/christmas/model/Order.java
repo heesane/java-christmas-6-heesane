@@ -2,8 +2,9 @@ package christmas.model;
 
 import java.util.HashMap;
 
-import static christmas.view.constant.ViewMessages.AMOUNT;
-import static christmas.view.constant.ViewMessages.WHITESPACE;
+import static christmas.constant.stringConstant.AMOUNT;
+import static christmas.constant.stringConstant.WHITESPACE;
+
 
 public class Order {
     private final HashMap<String,Integer> order;

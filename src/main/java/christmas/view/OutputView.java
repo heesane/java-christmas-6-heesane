@@ -35,7 +35,7 @@ public class OutputView {
     }
     public void printTotalPrice(Price price){
         printConstantMessage(ViewMessages.TOTAL_PRICE_MESSAGE.getMessage());
-        printVariable(price.totalPriceToString()+ViewMessages.PRICE.getMessage());
+        printVariable(price.totalPriceToString()+PRICE.getMessage());
     }
     public void printFreeGiftList(Price price){
         printWhiteSpace();
@@ -55,7 +55,7 @@ public class OutputView {
     public void printTotalPriceAfterDiscount(Price price){
         printWhiteSpace();
         printConstantMessage(ViewMessages.TOTAL_PRICE_AFTER_DISCOUNT_MESSAGE.getMessage());
-        printVariable(price.getTotalPriceAfterBenefits()+ViewMessages.PRICE.getMessage());
+        printVariable(price.getTotalPriceAfterBenefits()+PRICE.getMessage());
     }
     public void printBadgeMessage(Price price){
         printWhiteSpace();
@@ -63,17 +63,17 @@ public class OutputView {
         printBadge(price);
     }
     private void printBadge(Price price){
-        if (price.getTotalBenefits() < Badge.BADGE_STAR.getBadgePrice()){
+        if (price.getTotalBenefits() < Badge.BADGE_STAR.getPrice()){
             printConstantMessage(EMPTY.getMessage());
         }
-        if(price.getTotalBenefits() <Badge.BADGE_TREE.getBadgePrice() && price.getTotalBenefits() >=Badge.BADGE_STAR.getBadgePrice()){
+        if(price.getTotalBenefits() <Badge.BADGE_TREE.getPrice() && price.getTotalBenefits() >=Badge.BADGE_STAR.getPrice()){
             printVariable(Badge.BADGE_STAR.getBadgeName());
         }
-        if (price.getTotalBenefits() < Badge.BADGE_SANTA.getBadgePrice() &&
-                price.getTotalBenefits() >= Badge.BADGE_TREE.getBadgePrice()){
+        if (price.getTotalBenefits() < Badge.BADGE_SANTA.getPrice() &&
+                price.getTotalBenefits() >= Badge.BADGE_TREE.getPrice()){
             printVariable(Badge.BADGE_TREE.getBadgeName());
         }
-        if(price.getTotalBenefits() >= Badge.BADGE_SANTA.getBadgePrice()){
+        if(price.getTotalBenefits() >= Badge.BADGE_SANTA.getPrice()){
             printVariable(Badge.BADGE_SANTA.getBadgeName());
         }
     }

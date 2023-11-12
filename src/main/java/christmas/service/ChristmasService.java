@@ -7,23 +7,19 @@ import christmas.parser.ParserReservation;
 public class ChristmasService {
     private final ParserReservation parserReservation;
     private final ParserOrderList parserOrderList;
-    public ChristmasService(ParserReservation parserReservation, ParserOrderList parserOrderList){
-        this.parserReservation = parserReservation;
-        this.parserOrderList = parserOrderList;
+    public ChristmasService(){
+        this.parserReservation = new ParserReservation();
+        this.parserOrderList = new ParserOrderList();
     }
-
     public Reservation makeReservation(String reservationDay) {
         return parserReservation.parseReservation(reservationDay);
     }
-
     public OrderList makeOrderList(String orderList){
         return parserOrderList.parseOrderList(orderList);
     }
-
     public Event makeEvent(Reservation date){
         return new Event(date);
     }
-
     public Price makePrice(OrderList orderList, Event event){
         Menu menu = new Menu();
         Integer totalPrice = getTotalPrice(orderList, menu);
@@ -38,24 +34,23 @@ public class ChristmasService {
                 getSpecialBenefits(event),
                 getFreeGiftBenefits(totalPrice));
     }
-    private Integer getTotalPrice(OrderList orderList, Menu menu){
-        Integer totalPrice = 0;
+    private int getTotalPrice(OrderList orderList, Menu menu){
+        int totalPrice = 0;
         for(Order order : orderList.orderList()){
             String menuName = order.getMenuName();
             totalPrice += menu.getMenuPrice(menuName) * order.getQuantity();;
         }
         return totalPrice;
-
     }
-    private Integer getChristmasBenefits(Event event){
-        Integer christmasBenefits = 0;
+    private int getChristmasBenefits(Event event){
+        int christmasBenefits = 0;
         if(event.isChristmasDday()){
             christmasBenefits += (event.getDate().reservationDay()-1) * 100 + 1000;
         }
         return christmasBenefits;
     }
-    private Integer getWeekBenefits(OrderList orderList, Event event, Menu menu){
-        Integer weekBenefits = 0;
+    private int getWeekBenefits(OrderList orderList, Event event, Menu menu){
+        int weekBenefits = 0;
         if(event.isWeek()){
             for(Order order : orderList.orderList()){
                 String menuName = order.getMenuName();
@@ -66,8 +61,8 @@ public class ChristmasService {
         }
         return weekBenefits;
     }
-    private Integer getWeekEndBenefits(OrderList orderList, Event event, Menu menu){
-        Integer weekendBenefits = 0;
+    private int getWeekEndBenefits(OrderList orderList, Event event, Menu menu){
+        int weekendBenefits = 0;
         if(event.isWeekend()){
             for(Order order : orderList.orderList()){
                 String menuName = order.getMenuName();
@@ -78,26 +73,21 @@ public class ChristmasService {
         }
         return weekendBenefits;
     }
-    private Integer getSpecialBenefits(Event event){
-        Integer specialBenefits = 0;
+    private int getSpecialBenefits(Event event){
+        int specialBenefits = 0;
         if(event.isSpecialEvent()){
             specialBenefits += 1000;
         }
         return specialBenefits;
     }
-    private Integer getFreeGiftBenefits(Integer totalPrice){
-        Integer freeGiftBenefits = 0;
+    private int getFreeGiftBenefits(Integer totalPrice){
+        int freeGiftBenefits = 0;
         if(totalPrice >= 120000){
             freeGiftBenefits += 25000;
         }
         return freeGiftBenefits;
     }
-
-    public OrderInfo makeOrderInfo(OrderList orderList, Price price){
+    public OrderInfo makeOrderInfo(OrderList orderList, Price price) {
         return new OrderInfo(orderList, price);
-    }
-
-    public void printOrderInfo(Reservation date, OrderInfo orderInfo){
-
     }
 }
