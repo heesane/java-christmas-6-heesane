@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static christmas.constant.stringConstant.COMMA;
+import static christmas.constant.stringConstant.DASH;
+
 public class ParserOrderList {
     private static OrderListValidator validator;
-    private final String DASH = "-";
     private InputView input;
     private OutputView output;
 
@@ -31,7 +33,7 @@ public class ParserOrderList {
             output.printExceptionMessage(e);
             return parseOrderList(input.inputMenuAndAmount());
         }
-        String[] orderSplit = orderList.split(",");
+        String[] orderSplit = orderList.split(COMMA.getMessage());
         List<Order> orderArrayList = IntStream.
                 iterate(0, i -> i < orderSplit.length, i -> i + 1).
                 mapToObj(i -> parseOrder(orderSplit[i])).
@@ -39,7 +41,7 @@ public class ParserOrderList {
         return new OrderList(orderArrayList);
     }
     private Order parseOrder(String order){
-        String[] orderSplit = order.split(DASH);
+        String[] orderSplit = order.split(DASH.getMessage());
         HashMap<String,Integer> orderMap = new HashMap<>();
         orderMap.put(orderSplit[0],Integer.parseInt(orderSplit[1]));
         return new Order(orderMap);
