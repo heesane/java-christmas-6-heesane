@@ -11,14 +11,10 @@ public enum ViewMessages {
     EVENT_MESSAGE("<혜택 내역>"),
     DISCOUNT_MESSAGE("<총혜택 금액>"),
     TOTAL_PRICE_AFTER_DISCOUNT_MESSAGE("<할인 후 예상 결제 금액>"),
-    BADGE_MESSAGE("<12월 이벤트 배지"),
+    BADGE_MESSAGE("<12월 이벤트 배지>"),
     PRICE("원"),
     AMOUNT("개"),
-    EMPTY("없음"),
-    CHRISTMAS_D_DAY_MESSAGE("크리스마스 디데이 할인: "),
-    WEEKDAY_DISCOUNT_MESSAGE("평일 할인: "),
-    WEEKEND_DISCOUNT_MESSAGE("특별 할인: "),
-    FREE_GIFT_MESSAGE("증정 이벤트: ");
+    WHITESPACE(" ");
 
 
     private final String message;
