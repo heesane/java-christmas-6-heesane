@@ -1,19 +1,18 @@
 package christmas.model;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class OrderList {
-    private final List<Order> orderList;
+public record OrderList(List<Order> orderList) {
 
-    public OrderList(List<Order> orderList){
-        this.orderList = orderList;
-    }
-
-    public Integer getListLength(){
+    public Integer getListLength() {
         return orderList.size();
     }
-    public List<Order> getOrderList(){
-        return orderList;
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(Order order : orderList){
+            sb.append(order.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }
