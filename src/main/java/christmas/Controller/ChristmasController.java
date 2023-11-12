@@ -44,4 +44,5 @@ public class ChristmasController {
         output.printTotalPriceAfterDiscount(price);
         output.printBadgeMessage(price);
     }
+
 }
