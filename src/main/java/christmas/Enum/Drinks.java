@@ -3,7 +3,6 @@ package christmas.Enum;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Drinks {
     Zero_Cola("제로콜라", 3000),
@@ -15,12 +14,11 @@ public enum Drinks {
         this.name = name;
         this.price = price;
     }
-
-    public Integer getIntPrice() {
-        return price;
+    public Integer getPrice() {
+        return this.price;
     }
     public String getMenuName() {
-        return name;
+        return this.name;
     }
     public static List<HashMap<String,Integer>> getDrinks(){
         return Arrays.stream(Drinks.values()).
@@ -29,7 +27,7 @@ public enum Drinks {
     }
     private static HashMap<String,Integer> makeDrinksHashMap(Drinks drink){
         HashMap<String,Integer> drinksHashMap = new HashMap<>();
-        drinksHashMap.put(drink.getMenuName(),drink.getIntPrice());
+        drinksHashMap.put(drink.getMenuName(),drink.getPrice());
         return drinksHashMap;
     }
 }

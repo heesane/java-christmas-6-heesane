@@ -3,8 +3,6 @@ package christmas.Enum;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public enum Appetizers {
     AL_SONG_SOUP("알송이수프",6000),
@@ -23,7 +21,7 @@ public enum Appetizers {
         return menuName;
     }
 
-    public Integer getIntPrice() {
+    public Integer getPrice() {
         return intPrice;
     }
     public static List<HashMap<String,Integer>> getAppetizers(){
@@ -33,7 +31,7 @@ public enum Appetizers {
     }
     private static HashMap<String,Integer> makeAppetizerHashMap(Appetizers appetizer){
         HashMap<String,Integer> appetizerHashMap = new HashMap<>();
-        appetizerHashMap.put(appetizer.getMenuName(),appetizer.getIntPrice());
+        appetizerHashMap.put(appetizer.getMenuName(),appetizer.getPrice());
         return appetizerHashMap;
     }
 }

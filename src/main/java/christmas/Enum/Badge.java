@@ -15,7 +15,7 @@ public enum Badge {
     public String getBadgeName() {
         return badgeName;
     }
-    public Integer getBadgePrice() {
+    public Integer getPrice() {
         return badgePrice;
     }
 }

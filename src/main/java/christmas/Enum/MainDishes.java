@@ -18,7 +18,7 @@ public enum MainDishes {
     public String getName() {
         return name;
     }
-    public int getIntPrice() {
+    public int getPrice() {
         return price;
     }
     public static List<HashMap<String,Integer>> getMainDishes(){
@@ -28,7 +28,7 @@ public enum MainDishes {
     }
     private static HashMap<String,Integer> makeMainDishesHashMap(MainDishes mainDish){
         HashMap<String,Integer> mainDishesHashMap = new HashMap<>();
-        mainDishesHashMap.put(mainDish.getName(),mainDish.getIntPrice());
+        mainDishesHashMap.put(mainDish.getName(),mainDish.getPrice());
         return mainDishesHashMap;
     }
 }
