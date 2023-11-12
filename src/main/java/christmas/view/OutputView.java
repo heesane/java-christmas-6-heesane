@@ -6,6 +6,8 @@ import christmas.model.Price;
 import christmas.model.Reservation;
 import christmas.view.constant.ViewMessages;
 
+import static christmas.constant.stringConstant.*;
+
 public class OutputView {
     private static void printConstantMessage(String message){
         System.out.println(message);
@@ -58,16 +60,20 @@ public class OutputView {
     public void printBadgeMessage(Price price){
         printWhiteSpace();
         printConstantMessage(ViewMessages.BADGE_MESSAGE.getMessage());
-        if (price.getTotalBenefits() < 5000){
-            printConstantMessage(ViewMessages.EMPTY.getMessage());
+        printBadge(price);
+    }
+    private void printBadge(Price price){
+        if (price.getTotalBenefits() < Badge.BADGE_STAR.getBadgePrice()){
+            printConstantMessage(EMPTY.getMessage());
         }
-        else if(price.getTotalBenefits() <10000 && price.getTotalBenefits() >=5000){
+        if(price.getTotalBenefits() <Badge.BADGE_TREE.getBadgePrice() && price.getTotalBenefits() >=Badge.BADGE_STAR.getBadgePrice()){
             printVariable(Badge.BADGE_STAR.getBadgeName());
         }
-        else if (price.getTotalBenefits() < 20000 && price.getTotalBenefits() >= 10000){
+        if (price.getTotalBenefits() < Badge.BADGE_SANTA.getBadgePrice() &&
+                price.getTotalBenefits() >= Badge.BADGE_TREE.getBadgePrice()){
             printVariable(Badge.BADGE_TREE.getBadgeName());
         }
-        else if(price.getTotalBenefits() >= 20000){
+        if(price.getTotalBenefits() >= Badge.BADGE_SANTA.getBadgePrice()){
             printVariable(Badge.BADGE_SANTA.getBadgeName());
         }
     }
