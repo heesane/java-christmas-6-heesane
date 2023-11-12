@@ -11,12 +11,7 @@ public enum ViewMessages {
     EVENT_MESSAGE("<혜택 내역>"),
     DISCOUNT_MESSAGE("<총혜택 금액>"),
     TOTAL_PRICE_AFTER_DISCOUNT_MESSAGE("<할인 후 예상 결제 금액>"),
-    BADGE_MESSAGE("<12월 이벤트 배지>"),
-    PRICE("원"),
-    AMOUNT("개"),
-    WHITESPACE(" ");
-
-
+    BADGE_MESSAGE("<12월 이벤트 배지>");
     private final String message;
     ViewMessages(String message) {
         this.message = message;
