@@ -13,4 +13,8 @@ public class Order {
     public Integer getQuantity(){
         return order.values().stream().findFirst().get();
     }
+    @Override
+    public String toString(){
+        return getMenuName()+" "+getQuantity()+"개";
+    }
 }
