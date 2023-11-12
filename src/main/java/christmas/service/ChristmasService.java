@@ -5,7 +5,6 @@ import christmas.parser.ParserOrderList;
 import christmas.parser.ParserReservation;
 
 public class ChristmasService {
-    private final Integer EVENT_PRICE = 10000;
     private final ParserReservation parserReservation;
     private final ParserOrderList parserOrderList;
     public ChristmasService(ParserReservation parserReservation, ParserOrderList parserOrderList){
@@ -96,5 +95,9 @@ public class ChristmasService {
 
     public OrderInfo makeOrderInfo(OrderList orderList, Price price){
         return new OrderInfo(orderList, price);
+    }
+
+    public void printOrderInfo(Reservation date, OrderInfo orderInfo){
+
     }
 }

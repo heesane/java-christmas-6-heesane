@@ -31,6 +31,11 @@ public class ChristmasController {
         Event event = service.makeEvent(date);
         Price price = service.makePrice(orderList, event);
         OrderInfo orderInfo = service.makeOrderInfo(orderList,price);
+        System.out.println(orderInfo.price().toString());
+        System.out.println(orderInfo.price().specialBenefits());
+        printResultMessages(date,orderInfo,orderInfo.price());
+    }
+    private void printResultMessages(Reservation date, OrderInfo orderInfo, Price price){
         output.printOrderList(date,orderInfo);
         output.printTotalPrice(price);
         output.printFreeGiftList(price);
