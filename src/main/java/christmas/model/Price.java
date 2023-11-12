@@ -2,13 +2,16 @@ package christmas.model;
 
 import java.text.DecimalFormat;
 
+import static christmas.constant.EventConstant.*;
+import static christmas.constant.stringConstant.*;
+
 public record Price(Integer totalPrice, Integer christmasBenefits, Integer weekBenefits, Integer weekendBenefits, Integer specialBenefits, Integer freeGiftBenefits) {
     public String getTotalPriceAfterBenefits() {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        return decimalFormat.format(totalPrice - getTotalBenefits());
+        return decimalFormat.format(totalPrice - getTotalBenefits() + freeGiftBenefits);
     }
     public Integer getTotalBenefits(){
-        return christmasBenefits + weekBenefits + weekendBenefits + specialBenefits;
+        return christmasBenefits + weekBenefits + weekendBenefits + specialBenefits+ freeGiftBenefits;
     }
     public String totalPriceToString(){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
@@ -16,44 +19,54 @@ public record Price(Integer totalPrice, Integer christmasBenefits, Integer weekB
     }
     public String freeGift(){
         if(this.freeGiftBenefits() == 0){
-            return "없음";
+            return EMPTY.getMessage();
         }
-        return "샴페인 1개";
+        return CHAMPAGNE.getMessage();
     }
     public String christmasBenefitsToString(){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         if(this.christmasBenefits() == 0){
             return null;
         }
-        return "크리스마스 디데이 할인: -"+decimalFormat.format(this.christmasBenefits())+"원\n";
+        return CHRISTMAS_D_DAY_MESSAGE.getMessage()+
+                decimalFormat.format(this.christmasBenefits())+
+                PRICE.getMessage();
     }
     public String weekBenefitsToString(){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         if(this.weekBenefits() == 0){
             return null;
         }
-        return "평일 할인: -"+decimalFormat.format(this.weekBenefits())+"원\n";
+        return WEEKDAY_DISCOUNT_MESSAGE.getMessage()+
+                decimalFormat.format(this.weekBenefits())+
+                PRICE.getMessage();
     }
     public String weekendBenefitsToString(){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         if(this.weekendBenefits() == 0){
             return null;
         }
-        return  "주말 할인: -"+decimalFormat.format(this.weekendBenefits())+"원\n";
+        return  WEEKEND_DISCOUNT_MESSAGE.getMessage()+
+                decimalFormat.format(this.weekendBenefits())+
+                PRICE.getMessage();
     }
     public String specialBenefitsToString(){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         if(this.specialBenefits() == 0){
             return null;
         }
-        return "특별 할인: -"+decimalFormat.format(this.weekendBenefits())+"원\n";
+        return SPECIAL_DISCOUNT_MESSAGE.getMessage()+
+                decimalFormat.format(this.specialBenefits())+
+                PRICE.getMessage();
     }
     public String freeGiftBenefitsToString(){
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         if(this.freeGiftBenefits() == 0){
             return null;
         }
-        return "증정 이벤트: -"+decimalFormat.format(this.weekendBenefits())+"원\n";
+        return FREE_GIFT_MESSAGE.getMessage()+
+                decimalFormat.format(this.freeGiftBenefits())+
+                PRICE.getMessage();
     }
     @Override
     public String toString(){
@@ -74,16 +87,16 @@ public record Price(Integer totalPrice, Integer christmasBenefits, Integer weekB
             sb.append(freeGiftBenefitsToString());
         }
         if(sb.isEmpty()){
-            return "없음";
+            return EMPTY.getMessage();
         }
         return sb.toString();
     }
 
     public String benefitPrice(){
         if(getTotalBenefits() == 0){
-            return "없음";
+            return PRICE_EMPTY.getMessage();
         }
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        return decimalFormat.format("-"+getTotalBenefits());
+        return decimalFormat.format(-1 *getTotalBenefits());
     }
 }
