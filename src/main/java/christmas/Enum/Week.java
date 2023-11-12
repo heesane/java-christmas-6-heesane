@@ -9,7 +9,7 @@ public enum Week {
     SATURDAY(6),
     SUNDAY(7);
 
-    private Integer day;
+    private final Integer day;
     Week(Integer day){
         this.day = day;
     }
