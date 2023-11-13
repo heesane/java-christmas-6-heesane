@@ -10,10 +10,10 @@ public class ChristmasController {
     private final OutputView output;
     private final ChristmasService service;
 
-    public ChristmasController() {
-        input = new InputView();
-        output = new OutputView();
-        service = new ChristmasService();
+    public ChristmasController(final InputView input, final OutputView output, final ChristmasService service) {
+        this.input = input;
+        this.output = output;
+        this.service = service;
     }
 
     public void execute() {

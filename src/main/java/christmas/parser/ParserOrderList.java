@@ -16,14 +16,14 @@ import static christmas.constant.stringConstant.COMMA;
 import static christmas.constant.stringConstant.DASH;
 
 public class ParserOrderList {
-    private static OrderListValidator validator;
+    private OrderListValidator validator;
     private InputView input;
     private OutputView output;
 
-    public ParserOrderList() {
-        validator = new OrderListValidator();
-        this.input = new InputView();
-        this.output = new OutputView();
+    public ParserOrderList(final InputView input, final OutputView output, final OrderListValidator validator) {
+        this.input = input;
+        this.output = output;
+        this.validator = validator;
     }
 
     public OrderList parseOrderList(String orderList) {

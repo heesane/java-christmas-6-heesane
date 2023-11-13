@@ -11,7 +11,7 @@ public class Event {
     private final Integer CHRISTMAS_MONTH = 12;
     private final Integer CHRISTMAS_EVENT_END = 25;
     private final Integer CHRISTMAS_EVENT_START = 1;
-    private final List<Integer> SPECAIL_EVENT = Arrays.asList(3, 10, 17, 24, 25, 31);
+    private final List<Integer> SPECIAL_EVENT = Arrays.asList(3, 10, 17, 24, 25, 31);
     private final Reservation date;
 
     public Event(Reservation date) {
@@ -38,6 +38,6 @@ public class Event {
     }
 
     public boolean isSpecialEvent() {
-        return SPECAIL_EVENT.contains(date.reservationDay());
+        return SPECIAL_EVENT.contains(date.reservationDay());
     }
 }

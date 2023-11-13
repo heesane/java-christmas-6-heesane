@@ -11,10 +11,6 @@ public class OrderListValidator {
     private static final Integer MENU_INDEX = 0;
     private static final Integer MAX_AMOUNT = 20;
 
-    public OrderListValidator() {
-
-    }
-
     public void isValidOrderList(String orderList) {
         if (!orderList.trim().matches("(([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)(,([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)*")) {
             throw new InvalidOrderFormatException();

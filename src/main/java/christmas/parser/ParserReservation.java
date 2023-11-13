@@ -11,10 +11,10 @@ public class ParserReservation {
     private final InputView input;
     private final OutputView output;
 
-    public ParserReservation() {
-        validator = new ReservationValidator();
-        this.input = new InputView();
-        this.output = new OutputView();
+    public ParserReservation(final InputView input, final OutputView output, final ReservationValidator validator) {
+        this.input = input;
+        this.output = output;
+        this.validator = validator;
     }
 
     public Reservation parseReservation(String reservationDay) {

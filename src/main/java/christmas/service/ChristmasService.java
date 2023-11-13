@@ -10,9 +10,9 @@ public class ChristmasService {
     private final ParserReservation parserReservation;
     private final ParserOrderList parserOrderList;
 
-    public ChristmasService() {
-        this.parserReservation = new ParserReservation();
-        this.parserOrderList = new ParserOrderList();
+    public ChristmasService(final ParserReservation parserReservation, final ParserOrderList parserOrderList) {
+        this.parserReservation = parserReservation;
+        this.parserOrderList = parserOrderList;
     }
 
     public Reservation makeReservation(String reservationDay) {
