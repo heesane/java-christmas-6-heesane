@@ -11,14 +11,16 @@ public class OrderListValidator {
     private static final Integer MENU_INDEX = 0;
     private static final Integer MAX_AMOUNT = 20;
 
-    public OrderListValidator(){
+    public OrderListValidator() {
 
     }
-    public void isValidOrderList(String orderList){
-        if(!orderList.trim().matches("(([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)(,([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)*")){
+
+    public void isValidOrderList(String orderList) {
+        if (!orderList.trim().matches("(([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)(,([ㄱ-ㅣ가-힣]*)+-\\b(?:[1-9]|1\\d|20)\\b)*")) {
             throw new InvalidOrderFormatException();
         }
     }
+
     public void checkOrderAmount(String orderList) {
         int checkAmount = 0;
         String[] orderListSplit = orderList.split(COMMA.getMessage());
@@ -31,12 +33,13 @@ public class OrderListValidator {
             throw new InvalidOrderFormatException();
         }
     }
-    public void checkOrderMenuInMenu(String orderList){
+
+    public void checkOrderMenuInMenu(String orderList) {
         Menu allMenu = new Menu();
         String[] orderListSplit = orderList.split(COMMA.getMessage());
         for (String s : orderListSplit) {
             String[] menu = s.split(DASH.getMessage());
-            if(!allMenu.isMenu(menu[MENU_INDEX])){
+            if (!allMenu.isMenu(menu[MENU_INDEX])) {
                 throw new InvalidOrderFormatException();
             }
         }

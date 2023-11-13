@@ -10,9 +10,11 @@ public enum Week {
     SUNDAY(7);
 
     private final Integer day;
-    Week(Integer day){
+
+    Week(Integer day) {
         this.day = day;
     }
+
     public Integer getDay() {
         return day;
     }

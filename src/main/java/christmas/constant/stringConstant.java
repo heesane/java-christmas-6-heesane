@@ -12,10 +12,12 @@ public enum stringConstant {
     AMOUNT("개"),
     WHITESPACE(" ");;
     private final String message;
-    stringConstant(String message){
+
+    stringConstant(String message) {
         this.message = message;
     }
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
 }

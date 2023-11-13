@@ -10,24 +10,29 @@ public enum Drinks {
     Champagne("샴페인", 25000);
     private final String name;
     private final Integer price;
+
     Drinks(String name, Integer price) {
         this.name = name;
         this.price = price;
     }
+
     public Integer getPrice() {
         return this.price;
     }
+
     public String getMenuName() {
         return this.name;
     }
-    public static List<HashMap<String,Integer>> getDrinks(){
+
+    public static List<HashMap<String, Integer>> getDrinks() {
         return Arrays.stream(Drinks.values()).
                 map(Drinks::makeDrinksHashMap).
                 toList();
     }
-    private static HashMap<String,Integer> makeDrinksHashMap(Drinks drink){
-        HashMap<String,Integer> drinksHashMap = new HashMap<>();
-        drinksHashMap.put(drink.getMenuName(),drink.getPrice());
+
+    private static HashMap<String, Integer> makeDrinksHashMap(Drinks drink) {
+        HashMap<String, Integer> drinksHashMap = new HashMap<>();
+        drinksHashMap.put(drink.getMenuName(), drink.getPrice());
         return drinksHashMap;
     }
 }

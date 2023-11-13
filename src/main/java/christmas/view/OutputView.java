@@ -6,78 +6,110 @@ import christmas.model.Price;
 import christmas.model.Reservation;
 import christmas.view.constant.ViewMessages;
 
-import static christmas.constant.stringConstant.*;
+import static christmas.constant.stringConstant.EMPTY;
+import static christmas.constant.stringConstant.PRICE;
 
 public class OutputView {
-    private static void printConstantMessage(String message){
+    private static void printConstantMessage(String message) {
         System.out.println(message);
     }
-    private static void printWhiteSpace(){
+
+    private static void printWhiteSpace() {
         System.out.println();
     }
-    private void printVariable(String message){
+
+    private void printVariable(String message) {
         System.out.println(message);
     }
-    public void printWelcome(){
+
+    public void printWelcome() {
         printConstantMessage(ViewMessages.WELCOME_MESSAGE.getMessage());
     }
-    public void printRequestReservationDate(){
+
+    public void printRequestReservationDate() {
         printConstantMessage(ViewMessages.REQUEST_RESERVATION_DATE_MESSAGE.getMessage());
     }
-    public void printRequestMenuAndAmount(){
+
+    public void printRequestMenuAndAmount() {
         printConstantMessage(ViewMessages.REQUEST_MENU_AND_AMOUNT_MESSAGE.getMessage());
     }
-    public void printOrderList(Reservation date, OrderInfo orderInfo){
-        printConstantMessage(date.toString()+ViewMessages.EVENT_PREVIEW_MESSAGE.getMessage());
+
+    public void printOrderList(Reservation date, OrderInfo orderInfo) {
+        printConstantMessage(date.toString() + ViewMessages.EVENT_PREVIEW_MESSAGE.getMessage());
         printWhiteSpace();
         printConstantMessage(ViewMessages.ORDER_LIST_MESSAGE.getMessage());
         printVariable(orderInfo.orderList().toString());
     }
-    public void printTotalPrice(Price price){
+
+    public void printTotalPrice(Price price) {
         printConstantMessage(ViewMessages.TOTAL_PRICE_MESSAGE.getMessage());
-        printVariable(price.totalPriceToString()+PRICE.getMessage());
+        printVariable(price.totalPriceToString() + PRICE.getMessage());
     }
-    public void printFreeGiftList(Price price){
+
+    public void printFreeGiftList(Price price) {
         printWhiteSpace();
         printConstantMessage(ViewMessages.FREE_GIFT_LIST_MESSAGE.getMessage());
         printVariable(price.freeGift());
     }
-    public void printEventMessage(OrderInfo orderInfo){
+
+    public void printEventMessage(OrderInfo orderInfo) {
         printWhiteSpace();
         printConstantMessage(ViewMessages.EVENT_MESSAGE.getMessage());
         printVariable(orderInfo.price().toString());
     }
-    public void printDiscount(Price price){
+
+    public void printDiscount(Price price) {
         printWhiteSpace();
         printConstantMessage(ViewMessages.DISCOUNT_MESSAGE.getMessage());
         printVariable(price.benefitPrice());
     }
-    public void printTotalPriceAfterDiscount(Price price){
+
+    public void printTotalPriceAfterDiscount(Price price) {
         printWhiteSpace();
         printConstantMessage(ViewMessages.TOTAL_PRICE_AFTER_DISCOUNT_MESSAGE.getMessage());
-        printVariable(price.getTotalPriceAfterBenefits()+PRICE.getMessage());
+        printVariable(price.getTotalPriceAfterBenefits() + PRICE.getMessage());
     }
-    public void printBadgeMessage(Price price){
+
+    public void printBadgeMessage(Price price) {
         printWhiteSpace();
         printConstantMessage(ViewMessages.BADGE_MESSAGE.getMessage());
         printBadge(price);
     }
-    private void printBadge(Price price){
-        if (price.getTotalBenefits() < Badge.BADGE_STAR.getPrice()){
+
+    private void printBadge(Price price) {
+        checkBadgePrice(price);
+        isStarBadge(price);
+        isTreeBadge(price);
+        isSantaBadge(price);
+    }
+
+    private void checkBadgePrice(Price price) {
+        if (price.getBenefits().getTotalBenefits() < Badge.BADGE_STAR.getPrice()) {
             printConstantMessage(EMPTY.getMessage());
         }
-        if(price.getTotalBenefits() <Badge.BADGE_TREE.getPrice() && price.getTotalBenefits() >=Badge.BADGE_STAR.getPrice()){
+    }
+
+    private void isStarBadge(Price price) {
+        if (price.getBenefits().getTotalBenefits() < Badge.BADGE_TREE.getPrice() &&
+                price.getBenefits().getTotalBenefits() >= Badge.BADGE_STAR.getPrice()) {
             printVariable(Badge.BADGE_STAR.getBadgeName());
         }
-        if (price.getTotalBenefits() < Badge.BADGE_SANTA.getPrice() &&
-                price.getTotalBenefits() >= Badge.BADGE_TREE.getPrice()){
+    }
+
+    private void isTreeBadge(Price price) {
+        if (price.getBenefits().getTotalBenefits() < Badge.BADGE_SANTA.getPrice() &&
+                price.getBenefits().getTotalBenefits() >= Badge.BADGE_TREE.getPrice()) {
             printVariable(Badge.BADGE_TREE.getBadgeName());
         }
-        if(price.getTotalBenefits() >= Badge.BADGE_SANTA.getPrice()){
+    }
+
+    private void isSantaBadge(Price price) {
+        if (price.getBenefits().getTotalBenefits() >= Badge.BADGE_SANTA.getPrice()) {
             printVariable(Badge.BADGE_SANTA.getBadgeName());
         }
     }
-    public void printExceptionMessage(Exception e){
+
+    public void printExceptionMessage(Exception e) {
         printWhiteSpace();
         printConstantMessage(e.getMessage());
     }

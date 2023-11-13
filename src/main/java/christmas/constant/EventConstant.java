@@ -10,10 +10,12 @@ public enum EventConstant {
     CHAMPAGNE("샴페인 1개");
 
     private final String message;
-    EventConstant(String message){
+
+    EventConstant(String message) {
         this.message = message;
     }
-    public String getMessage(){
+
+    public String getMessage() {
         return message;
     }
 }

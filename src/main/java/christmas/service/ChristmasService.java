@@ -13,7 +13,6 @@ public class ChristmasService {
     public ChristmasService() {
         this.parserReservation = new ParserReservation();
         this.parserOrderList = new ParserOrderList();
-
     }
 
     public Reservation makeReservation(String reservationDay) {
@@ -31,26 +30,20 @@ public class ChristmasService {
     public Price makePrice(OrderList orderList, Event event) {
         Menu menu = new Menu();
         Integer totalPrice = getTotalPrice(orderList, menu);
-        Price totalPriceObject = getPrice(totalPrice);
-        if (totalPriceObject != null) return totalPriceObject;
-        return getPrice(orderList, event, totalPrice, menu);
+        if (totalPrice < EVENT_LIMIT.getPrice()) {
+            return new Price(totalPrice, new Benefits());
+        }
+        return createPrice(orderList, event, totalPrice, menu);
     }
 
-    private Price getPrice(OrderList orderList, Event event, Integer totalPrice, Menu menu) {
-        return new Price(
-                totalPrice,
+    private Price createPrice(OrderList orderList, Event event, Integer totalPrice, Menu menu) {
+        Benefits benefits = new Benefits(
                 getChristmasBenefits(event),
                 getWeekBenefits(orderList, event, menu),
                 getWeekEndBenefits(orderList, event, menu),
                 getSpecialBenefits(event),
                 getFreeGiftBenefits(totalPrice));
-    }
-
-    private Price getPrice(Integer totalPrice) {
-        if (totalPrice < EVENT_LIMIT.getPrice()) {
-            return new Price(totalPrice, INIT_PRICE.getPrice(), INIT_PRICE.getPrice(), INIT_PRICE.getPrice(), INIT_PRICE.getPrice(), INIT_PRICE.getPrice());
-        }
-        return null;
+        return new Price(totalPrice,benefits);
     }
 
     private int getTotalPrice(OrderList orderList, Menu menu) {
@@ -58,7 +51,6 @@ public class ChristmasService {
         for (Order order : orderList.orderList()) {
             String menuName = order.getMenuName();
             totalPrice += menu.getMenuPrice(menuName) * order.getQuantity();
-            ;
         }
         return totalPrice;
     }
@@ -66,10 +58,7 @@ public class ChristmasService {
     private int getChristmasBenefits(Event event) {
         int christmasBenefits = INIT_PRICE.getPrice();
         if (event.isChristmasDday()) {
-            christmasBenefits = christmasBenefits +
-                    (event.getDate().reservationDay() - 1) *
-                            CHRISTMAS_BENEFIT.getPrice() +
-                    CHRISTMAS_INIT_BENEFIT.getPrice();
+            christmasBenefits += (event.getDate().reservationDay() - 1) * CHRISTMAS_BENEFIT.getPrice() + CHRISTMAS_INIT_BENEFIT.getPrice();
         }
         return christmasBenefits;
     }
@@ -77,20 +66,20 @@ public class ChristmasService {
     private int getWeekBenefits(OrderList orderList, Event event, Menu menu) {
         int weekBenefits = INIT_PRICE.getPrice();
         if (event.isWeek()) {
-            weekBenefits = getWeekBenefits(orderList, menu, weekBenefits);
+            weekBenefits = calculateWeekBenefits(orderList, menu, weekBenefits);
         }
         return weekBenefits;
     }
 
-    private int getWeekBenefits(OrderList orderList, Menu menu, int weekBenefits) {
+    private int calculateWeekBenefits(OrderList orderList, Menu menu, int weekBenefits) {
         for (Order order : orderList.orderList()) {
             String menuName = order.getMenuName();
-            weekBenefits = getWeekBenefits(menu, order, menuName, weekBenefits);
+            weekBenefits = checkDessertBenefits(menu, order, menuName, weekBenefits);
         }
         return weekBenefits;
     }
 
-    private int getWeekBenefits(Menu menu, Order order, String menuName, int weekBenefits) {
+    private int checkDessertBenefits(Menu menu, Order order, String menuName, int weekBenefits) {
         if (menu.isDessert(menuName)) {
             weekBenefits += WEEK_BENEFIT.getPrice() * order.getQuantity();
         }
@@ -100,20 +89,20 @@ public class ChristmasService {
     private int getWeekEndBenefits(OrderList orderList, Event event, Menu menu) {
         int weekendBenefits = INIT_PRICE.getPrice();
         if (event.isWeekend()) {
-            weekendBenefits = getWeekendBenefits(orderList, menu, weekendBenefits);
+            weekendBenefits = calculateWeekendBenefits(orderList, menu, weekendBenefits);
         }
         return weekendBenefits;
     }
 
-    private int getWeekendBenefits(OrderList orderList, Menu menu, int weekendBenefits) {
+    private int calculateWeekendBenefits(OrderList orderList, Menu menu, int weekendBenefits) {
         for (Order order : orderList.orderList()) {
             String menuName = order.getMenuName();
-            weekendBenefits = getWeekendBenefits(menu, order, menuName, weekendBenefits);
+            weekendBenefits = checkMainDIshBenefits(menu, order, menuName, weekendBenefits);
         }
         return weekendBenefits;
     }
 
-    private int getWeekendBenefits(Menu menu, Order order, String menuName, int weekendBenefits) {
+    private int checkMainDIshBenefits(Menu menu, Order order, String menuName, int weekendBenefits) {
         if (menu.isMainDish(menuName)) {
             weekendBenefits += WEEKEND_BENEFIT.getPrice() * order.getQuantity();
         }

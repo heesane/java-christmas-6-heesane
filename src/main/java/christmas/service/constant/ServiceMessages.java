@@ -11,10 +11,12 @@ public enum ServiceMessages {
     FREE_GIFT_BENEFIT(25000),
     FREE_GIFT_LIMIT(120000);
     private final Integer number;
-    ServiceMessages(Integer number){
+
+    ServiceMessages(Integer number) {
         this.number = number;
     }
-    public Integer getPrice(){
+
+    public Integer getPrice() {
         return number;
     }
 }

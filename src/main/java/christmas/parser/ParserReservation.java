@@ -10,18 +10,25 @@ public class ParserReservation {
     private static ReservationValidator validator;
     private final InputView input;
     private final OutputView output;
-    public ParserReservation(){
+
+    public ParserReservation() {
         validator = new ReservationValidator();
         this.input = new InputView();
         this.output = new OutputView();
     }
-    public Reservation parseReservation(String reservationDay){
-        try{
-            validator.isValidReservationDay(reservationDay);
-        }catch(InvalidReservationDateException e){
-            output.printExceptionMessage(e);
-            return parseReservation(input.inputReservationDay());
-        }
+
+    public Reservation parseReservation(String reservationDay) {
+        if (validate(reservationDay)) return parseReservation(input.inputReservationDay());
         return new Reservation(Integer.parseInt(reservationDay));
+    }
+
+    private boolean validate(String reservationDay) {
+        try {
+            validator.isValidReservationDay(reservationDay);
+        } catch (InvalidReservationDateException e) {
+            output.printExceptionMessage(e);
+            return true;
+        }
+        return false;
     }
 }
