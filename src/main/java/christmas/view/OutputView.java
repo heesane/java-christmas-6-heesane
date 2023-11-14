@@ -1,7 +1,7 @@
 package christmas.view;
 
 import christmas.Enum.Badge;
-import christmas.model.OrderInfo;
+import christmas.model.Bill;
 import christmas.model.Price;
 import christmas.model.Reservation;
 import christmas.view.constant.ViewMessages;
@@ -34,11 +34,11 @@ public class OutputView {
         printConstantMessage(ViewMessages.REQUEST_MENU_AND_AMOUNT_MESSAGE.getMessage());
     }
 
-    public void printOrderList(Reservation date, OrderInfo orderInfo) {
+    public void printOrderList(Reservation date, Bill bill) {
         printConstantMessage(date.toString() + ViewMessages.EVENT_PREVIEW_MESSAGE.getMessage());
         printWhiteSpace();
         printConstantMessage(ViewMessages.ORDER_LIST_MESSAGE.getMessage());
-        printVariable(orderInfo.orderList().toString());
+        printVariable(bill.orderList().toString());
     }
 
     public void printTotalPrice(Price price) {
@@ -52,10 +52,10 @@ public class OutputView {
         printVariable(price.freeGift());
     }
 
-    public void printEventMessage(OrderInfo orderInfo) {
+    public void printEventMessage(Bill bill) {
         printWhiteSpace();
         printConstantMessage(ViewMessages.EVENT_MESSAGE.getMessage());
-        printVariable(orderInfo.price().toString());
+        printVariable(bill.price().toString());
     }
 
     public void printDiscount(Price price) {

@@ -125,7 +125,7 @@ public class ChristmasService {
         return freeGiftBenefits;
     }
 
-    public OrderInfo makeOrderInfo(OrderList orderList, Price price) {
-        return new OrderInfo(orderList, price);
+    public Bill makeBill(OrderList orderList, Price price) {
+        return new Bill(orderList, price);
     }
 }

@@ -22,15 +22,15 @@ public class ChristmasController {
         OrderList orderList = orderList();
         Event event = service.makeEvent(date);
         Price price = service.makePrice(orderList, event);
-        OrderInfo orderInfo = service.makeOrderInfo(orderList, price);
-        printResultMessages(date, orderInfo, orderInfo.price());
+        Bill bill = service.makeBill(orderList, price);
+        printResultMessages(date, bill, bill.price());
     }
 
-    private void printResultMessages(Reservation date, OrderInfo orderInfo, Price price) {
-        output.printOrderList(date, orderInfo);
+    private void printResultMessages(Reservation date, Bill bill, Price price) {
+        output.printOrderList(date, bill);
         output.printTotalPrice(price);
         output.printFreeGiftList(price);
-        output.printEventMessage(orderInfo);
+        output.printEventMessage(bill);
         output.printDiscount(price);
         output.printTotalPriceAfterDiscount(price);
         output.printBadgeMessage(price);
