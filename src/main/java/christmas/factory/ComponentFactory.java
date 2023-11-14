@@ -34,7 +34,7 @@ public class ComponentFactory {
         return new OutputView();
     }
 
-    private ChristmasService christmasService() {
+    public ChristmasService christmasService() {
         return new ChristmasService(parserReservation(), parserOrderList());
     }
     private ParserReservation parserReservation() {
